@@ -22,7 +22,8 @@ exec bash
 
 # Cut off raster image
 gmt grdcut asym.3.2.nc -R-40/150/-70/-10 -Gker_asym.tif
-
+# gdalinfo ker_asym.tif
+# Min=14.000 Max=10000.000
 #
 gdalinfo ker_asym.tif -stats
 # Minimum=14.000, Maximum=10000.000, Mean=5491.073, StdDev=1628.733
@@ -37,21 +38,21 @@ gmt grdimage ker_asym.tif -Casym.cpt -R-25/-65/101/-10r -JA55/-50/7.5i -P -I+a15
 
 # Add grid
 gmt psbasemap -R -J \
-    -Bpxg10f5a10 -Bpyg10f5a10 -Bsxg5 -Bsyg5 \
+    -Bpxg10f5a10 -Bpyg10f5a15 -Bsxg5 -Bsyg5 \
     --MAP_TITLE_OFFSET=1.9c \
     --MAP_ANNOT_OFFSET=0.1c \
     --MAP_FRAME_AXES=wESN \
     --FONT_ANNOT_PRIMARY=10p,0,dimgray \
     --FONT_TITLE=13p,0,black \
     --FONT_LABEL=10p,0,black \
-    -B+t"Asymmetries in crustal accretion (%) on conjugate ridge flanks: Kerguelen Plateau and SW Indian Ocean" -O -K >> $ps
+    -B+t"Asymmetries in crustal accretion on conjugate ridge flanks: Kerguelen Plateau and SW Indian Ocean" -O -K >> $ps
     
 # Step-7. Add legend
-gmt psscale -Dg-30/-58+w15.4c/0.4c+v+ml+e -R -J -Casym.cpt \
+gmt psscale -Dg-30/-59+w15.4c/0.4c+v+ml+e -R -J -Casym.cpt \
     --FONT_LABEL=10p,0,dimgray \
     --FONT_ANNOT_PRIMARY=10p,0,black \
     -Bg1000f200a1000+l"Color scale: 'no_green' [R=0/6000, H=0, C=RGB]" \
-    -I0.2 -By+lm -O -K >> $ps
+    -I0.2 -By+l"%" -O -K >> $ps
     
 # Step-10. Add scale, directional rose
 gmt psbasemap -R -J \
@@ -68,8 +69,8 @@ gmt logo -Dx5.5/-2.2+o0.1i/0.1i+w2c -O -K >> $ps
 gmt pstext -R0/10/0/15 -JX10/10 -X0.5c -Y13.0c -N -O \
     -F+f12p,0,black+jLB >> $ps << EOF
 0.0 5.9 Lambert Azimuthal Equal-Area projection. Central meridian 55\232E, standard parallel 50\232S
-0.0. 6.6 Age, spreading rates and spreading asymmetry of the ocean crust, 2 arc min netCDF grid v.3
+0.0. 6.6 Spreading asymmetry of the ocean crust [%], 2 arc min netCDF grid v.3.
 EOF
 
 # Step-13. Convert to image file using GhostScript
-gmt psconvert Ker_asym.ps -A1.7c -E720 -Tj -Z
+gmt psconvert Ker_asym.ps -A1.8c -E720 -Tj -Z
