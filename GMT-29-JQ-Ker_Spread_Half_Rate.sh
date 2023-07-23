@@ -45,7 +45,7 @@ gmt grdimage ker_rate.tif -Cage.cpt -R-25/-65/101/-10r -JA55/-50/7.5i -P -I+a15+
 
 # Add grid
 gmt psbasemap -R -J \
-    -Bpxg10f5a10 -Bpyg10f5a10 -Bsxg5 -Bsyg5 \
+    -Bpxg10f5a10 -Bpyg10f5a15 -Bsxg5 -Bsyg5 \
     --MAP_TITLE_OFFSET=1.9c \
     --MAP_ANNOT_OFFSET=0.1c \
     --MAP_FRAME_AXES=wESN \
@@ -88,8 +88,8 @@ gmt logo -Dx5.5/-2.2+o0.1i/0.1i+w2c -O -K >> $ps
 # Add subtitle
 gmt pstext -R0/10/0/15 -JX10/10 -X0.5c -Y13.0c -N -O \
     -F+f12p,0,black+jLB >> $ps << EOF
-0.0 5.9 Lambert Azimuthal Equal-Area projection. Central meridian 55\232E, standard parallel 50\232S
-0.0. 6.6 Global Seafloor Fabric and Magnetic Lineation Data (GSFML) are shown by cyan lines
+-2.0 5.9 Lambert Azimuthal Equal-Area projection. Central meridian 55\232E, standard parallel 50\232S
+-2.0 6.6 Global Seafloor Fabric and Magnetic Lineation Data (GSFML) are shown by cyan lines; tectonic plates by red lines
 EOF
 
 # Step-13. Convert to image file using GhostScript
