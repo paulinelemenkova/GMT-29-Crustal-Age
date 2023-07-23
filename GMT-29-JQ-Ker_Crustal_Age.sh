@@ -37,7 +37,7 @@ gmt grdimage ker_age.tif -Cage.cpt -R-25/-65/101/-10r -JA55/-50/7.5i -P -I+a15+n
 
 # Add grid
 gmt psbasemap -R -J \
-    -Bpxg10f5a10 -Bpyg10f5a10 -Bsxg5 -Bsyg5 \
+    -Bpxg10f5a10 -Bpyg10f5a15 -Bsxg5 -Bsyg5 \
     --MAP_TITLE_OFFSET=1.9c \
     --MAP_ANNOT_OFFSET=0.1c \
     --MAP_FRAME_AXES=wESN \
@@ -58,7 +58,7 @@ gmt psbasemap -R -J \
     --FONT=10p,0,black \
     --MAP_TITLE_OFFSET=0.3c \
     -Tdx0.8c/10.3c+w0.3i+f2+l+o0.15i \
-    -Lx16.0c/-1.6c+c318/-57+w2000k+l"Scale (km) at 55\232E 50\232S"+f \
+    -Lx16.0c/-1.7c+c318/-57+w2000k+l"Scale (km) at 55\232E 50\232S"+f \
     -UBL/-5p/-40p -O -K >> $ps
 
 # Step-11. Add GMT logo
